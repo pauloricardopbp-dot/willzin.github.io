@@ -456,3 +456,94 @@ button{cursor:pointer}
   .brand-text{font-size:15px;gap:5px}
   .brand-text strong{font-size:9px;letter-spacing:.13em}
 }
+
+/* ===== Victoria Juris page transition loader ===== */
+.page-loader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(124,58,237,.16),transparent 28%),
+    #060408;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .22s ease,visibility .22s ease;
+}
+.page-loader.is-visible{
+  opacity:1;
+  visibility:visible;
+  pointer-events:all;
+}
+.vj-loader{
+  width:min(230px,70vw);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.vj-loader-shield{
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(192,132,252,.72);
+  border-radius:23px;
+  background:linear-gradient(145deg,rgba(168,85,247,.18),rgba(12,8,16,.96));
+  box-shadow:0 0 0 0 rgba(168,85,247,.30),inset 0 0 28px rgba(168,85,247,.10);
+  animation:vjPulse 1s ease-in-out infinite;
+}
+.vj-loader-shield span{
+  color:#fff;
+  font-family:"Manrope",sans-serif;
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:.06em;
+}
+.vj-loader-name{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+}
+.vj-loader-name strong{
+  color:#fff;
+  font-family:"Manrope",sans-serif;
+  font-size:17px;
+  font-weight:700;
+}
+.vj-loader-name span{
+  color:#c084fc;
+  font-family:"Manrope",sans-serif;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.vj-loader-line{
+  width:150px;
+  height:2px;
+  overflow:hidden;
+  border-radius:99px;
+  background:rgba(255,255,255,.08);
+}
+.vj-loader-line i{
+  display:block;
+  width:45%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#7c3aed,#c084fc);
+  animation:vjLoadingLine .85s ease-in-out infinite;
+}
+@keyframes vjPulse{
+  0%,100%{transform:scale(.96);box-shadow:0 0 0 0 rgba(168,85,247,.28),inset 0 0 28px rgba(168,85,247,.10)}
+  50%{transform:scale(1.04);box-shadow:0 0 0 12px rgba(168,85,247,0),0 0 35px rgba(168,85,247,.16),inset 0 0 28px rgba(168,85,247,.14)}
+}
+@keyframes vjLoadingLine{
+  0%{transform:translateX(-115%)}
+  50%{transform:translateX(115%)}
+  100%{transform:translateX(260%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .vj-loader-shield,.vj-loader-line i{animation:none}
+}
